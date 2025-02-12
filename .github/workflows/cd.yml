@@ -22,7 +22,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  
 
      
-      - name: Deploy to AWS EC2
+      - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@16.171.195.198 'cd /home/ubuntu/hng12-stage2-fastapi-book-project && git pull && systemctl restart fastapi'
           
