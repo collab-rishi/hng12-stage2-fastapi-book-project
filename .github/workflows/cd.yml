@@ -3,31 +3,26 @@ name: Continuous Deployment
 on:
   push:
     branches:
-      - main   # Trigger deployment when changes are pushed to the 'main' branch
+      - main  
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest   # The environment where the deployment job will run
+    runs-on: ubuntu-latest  
 
     steps:
-      # Step 1: Checkout the latest code from the main branch
+      
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up SSH to allow deployment on your server
+    
       - name: Set up SSH for deployment
-        uses: webfactory/ssh-agent@v0.5.3  # Set up SSH agent to authenticate with the server
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Secret for SSH private key
+        uses: webfactory/ssh-agent@v0.5.3  
 
-      # Step 3: Deploy to the server
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  
+
+     
       - name: Deploy to AWS EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@16.171.195.198 'cd /c/Users/kumar/Desktop/bytr/HNG-12/Stage3/hng12-stage2-fastapi-book-project && git pull && systemctl restart fastapi'
-          # Replace 'user' with your server's SSH username
-          # Replace 'your-server-ip' with your server's IP address
-          # The commands:
-          # - SSH into the server
-          # - Navigate to your project folder
-          # - Pull the latest code from GitHub
-          # - Restart the FastAPI application to apply new changes
+          ssh -o StrictHostKeyChecking=no ubuntu@16.171.195.198 'cd /home/ubuntu/fastapi-book-project && git pull && systemctl restart fastapi'
+          
