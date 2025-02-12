@@ -23,7 +23,7 @@ jobs:
       # Step 3: Deploy to the server
       - name: Deploy to AWS EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@16.171.195.198'cd /c/Users/kumar/Desktop/bytr/HNG-12/Stage3/hng12-stage2-fastapi-book-project && git pull && systemctl restart fastapi'
+          ssh -o StrictHostKeyChecking=no ubuntu@16.171.195.198 'cd /c/Users/kumar/Desktop/bytr/HNG-12/Stage3/hng12-stage2-fastapi-book-project && git pull && systemctl restart fastapi'
           # Replace 'user' with your server's SSH username
           # Replace 'your-server-ip' with your server's IP address
           # The commands:
