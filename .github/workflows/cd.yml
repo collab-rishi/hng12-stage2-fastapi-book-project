@@ -24,5 +24,20 @@ jobs:
      
       - name: Deploy to AWS EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@16.170.245.117 'cd /home/ubuntu/hng12-stage2-fastapi-book-project && git pull && systemctl restart fastapi'
+          ssh -o StrictHostKeyChecking=no ubuntu@16.170.245.117 << 'EOF'
+            
+            cd /home/ubuntu/hng12-stage2-fastapi-book-project
+
+            git pull origin main
+
+            source /home/ubuntu/hng12-stage2-fastapi-book-project/venv/bin/activate
+
+            pip install -r requirements.txt
+
+            sudo systemctl restart fastapi-app.service
+
+            sudo systemctl restart nginx
+
+          EOF
+          
           
